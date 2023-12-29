@@ -1,6 +1,7 @@
 package edu.kh.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +34,65 @@ public class ServletEx2 extends HttpServlet{
 			}
 			
 		}
+		
+		// HttpServletRequest	: 클라이언트 정보 + 전달된 값
+		// HttpServletResponse	: 서버가 클라이언트에게 응답할 방법을 제공
+		
+		// Write : 서버가 클라이언트에게 쓰다 == 출력
+		// resp.getWrite() : 서버가 클라이언트에게 응답할 수 있는
+		//					 출력 전용 스트림을 얻어옴
+		
+		resp.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		
+		// out.print("응답하라 1988");
+		
+		// ** 스트림을 통해서 그냥 문자열을 내보내면 정상 출력되지 않는 문제 발생 **
+		// 왜? 전달되는 응답 데이터가
+		// 어떤 형식인지, 문자 인코딩은 어떤건지를 지정해주지 않아서
+		
+		
+		// ******************************************************************
+		/* Dynamic Web project(동적 웹 프로젝트)
+		 * 
+		 * - 요청에 따라서 응답되는 화면(HTML)을 실시간으로 만들어 내서(동적)
+		 * 	 클라이언트에게 응답하는 프로젝트
+		 * */
+		// ******************************************************************
+		
+		// HTML 코드를 자바(Servlet)에서 작성하여
+		// 클라이언트와 연결된 응답 출력용 스트림(out)을 이용해서 출력
+		
+		out.print("<!DOCTYPE html>");
+		out.print("<html>");
+		
+		out.print("<head>");
+		out.print("<title>" + orderer + "님의 주문 목록</title>");
+		out.print("</head>");
+		
+		out.print("<body>");
+		
+		out.print("<ul>");
+		
+		if(coffee != null) { 
+			
+			for (String c : coffee) {
+				out.print("<li>" + c + "</li>");
+			}
+		}
+		
+		out.print("</ul>");
+		
+		out.print("</body>");
+		
+		out.print("</html>");
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 }
