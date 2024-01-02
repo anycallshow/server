@@ -16,7 +16,7 @@ public class PizzaOrderServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		// 파라미터 얻어오기
-		String pizza = req.getParameter("pizza");
+//		String pizza = req.getParameter("pizza");
 		
 		// * radio 타입의 값은 1개 밖에 전달되지 않으므로 getParameter()를 사용한다!
 		String size = req.getParameter("size");
