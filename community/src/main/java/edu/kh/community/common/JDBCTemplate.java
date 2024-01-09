@@ -43,7 +43,7 @@ public class JDBCTemplate {
 			Context initContext = new InitialContext();
 			
 			// servers -> context.xml 파일 찾기
-			Context envContext = (Context)initContext.lookup("java:/comp/env");
+			Context envContext = (Context) initContext.lookup("java:/comp/env");
 			
 			// DBCP 세팅의 <Resource> 태그를 찾아 DataSource 형식의 객체로 얻어오기
 			// DataSource : Connection Pool을 구현하는 객체(Connection 얻어오기 가능)

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,34 +69,81 @@
             </section>
             <section class="content-2">
             
-            	<!-- 절대 경로 : /community/member/login -->
-            	<!-- 상대 경로 : (index.jsp) 기준 -->
-                <form action="member/login" method="post" name="login-form">
+                <!-- if - else -->
+                <c:choose>
+                    <%-- 로그인이 되어있지 않은 경우 --%>
+                    <c:when test="${empty sessionScope.loginMember}">
 
-                    <!-- 아이디/비밀번호/로그인버튼 영역 -->
-                    <fieldset id="id-pw-area">
-                        <section>
-                            <input type="text" name="inputEmail" placeholder="아이디(이메일)">
-                            <input type="password" name="inputPw" placeholder="비밀번호">
-                        </section>
-                        <section>
-                            <button>로그인</button>
-                        </section>
+                        <!-- 절대 경로 : /community/member/login -->
+                        <!-- 상대 경로 : (index.jsp) 기준 -->
+                        <form action="member/login" method="post" name="login-form">
 
-                    </fieldset>
+                            <!-- 아이디/비밀번호/로그인버튼 영역 -->
+                            <fieldset id="id-pw-area">
+                                <section>
+                                    <input type="text" name="inputEmail" placeholder="아이디(이메일)" value="${cookie.saveId.value}">
+                                                                                                        <!-- 현재 페이지 쿠키 중 "savaId"의 내용을 출력 -->
+                                    <input type="password" name="inputPw" placeholder="비밀번호">
+                                </section>
+                                <section>
+                                    <button>로그인</button>
+                                </section>
 
-                    <!-- 회원가입/ ID/PW 찾기 영역 -->
-                    <article id="signup-find-area">
-                        <a href="#">회원가입</a>
-                        <span>|</span>
-                        <a href="#">ID/PW 찾기</a>
-                    </article>
+                            </fieldset>
 
-                    <label >
-                        <input type="checkbox">아이디 저장
-                    </label>
+                            <!-- 회원가입/ ID/PW 찾기 영역 -->
+                            <article id="signup-find-area">
+                                <a href="#">회원가입</a>
+                                <span>|</span>
+                                <a href="#">ID/PW 찾기</a>
+                            </article>
 
-                </form>
+                            <!-- 쿠키에 saveId가 있는 경우 -->
+                            <c:if test="${!empty cookie.saveId.value}">
+
+                                <!-- chk 변수 생성(page scope) -->
+                                <c:set var="chk" value="checked"/>
+                            </c:if>
+
+                            <label >
+                                <!-- checked 속성 : radio/checkbox를 체크하는 속성 -->
+                                <input type="checkbox" name="saveId" ${chk}>아이디 저장
+                            </label>
+
+                        </form>
+
+                    </c:when>
+                    
+                    <%-- 로그인이 되어있는 경우 --%>
+                    <c:otherwise>
+
+                        <article class="login-area">
+                            
+                            <!-- 회원 프로필 이미지 -->
+                            <a href="#">
+                                <img src="resources/images/go.jpg" id="member-profile">
+                            </a>
+
+                            <!-- 회원 정보 + 로그아웃 버튼 -->
+                            <div class="my-info">
+                                <div>
+                                    <a href="#" id="nickname">${loginMember.memberNickname}</a>
+
+                                    <a href="/community/member/logout" id="logout-btn">로그아웃</a>
+                                </div>
+
+                                <p>
+                                    ${loginMember.memberEmail}
+                                </p>
+
+                            </div>
+
+                        </article>
+                    </c:otherwise>
+
+                </c:choose>
+
+            	
 
             </section>
         </section>
