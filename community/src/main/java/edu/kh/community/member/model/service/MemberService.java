@@ -18,6 +18,8 @@ public class MemberService {
 	 */
 	public Member login(Member mem) throws Exception{
 		
+		System.out.println("test0");
+		
 		// Connection 얻어오기
 		Connection conn = getConnection();
 				

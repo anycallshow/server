@@ -1,0 +1,136 @@
+
+header{
+    width: 100vw;
+    height: 120px;
+    border-bottom: 3px solid black;
+
+
+    position: relative;
+}
+
+#logoImg{
+    width: 130px;
+    height: 130px;
+
+    position: relative;
+    z-index: 1;
+}
+
+header > section:first-child{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    
+}
+
+header > section:first-child > a{
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+}
+
+header a{
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+
+.headerTop {
+    height: 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #FFBB23;
+    /* border-bottom: 3px solid #070872 ; */
+    font-weight: bold;
+}
+
+.headerTop > section:first-child{
+    margin-left: 10px;
+}
+
+
+
+.headerTop > section:last-child{
+    display: flex;
+    margin: 0 10px;
+}
+
+.headerTop > section:last-child > a{
+    /* margin-left: 10px; */
+    margin-right: 20px;
+}
+
+
+/* ***************메뉴 선택***************************** */
+
+nav{
+    height: 80px;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+
+}
+
+nav > ul{
+    padding: 0;
+    margin: 0 300px;
+    width: 100%;
+    list-style: none;
+    display:flex ;
+    justify-content: space-between;
+    
+
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+nav > ul  li{
+    /* border: 1px solid black; */
+    /* margin: 0 50px; */
+    height: 80px;
+    width: 140px;
+    text-align: center;
+    line-height: 80px;
+    
+}
+
+nav > ul  li:hover{
+    height: 78px;
+    color: white;
+    background-color: #FFBB23;
+    
+    cursor: pointer;
+}
+
+
+
+nav > ul > a:nth-child(2){
+    margin-right: 300px;
+}
+
+
+/* ****Footer************************ */
+
+
+
+footer{
+    height: 200px;
+
+    background-color: #E0E0E0;
+}
