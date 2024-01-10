@@ -1,4 +1,5 @@
-GitRepositoriesView.GitDirectories=C\:\\workspace\\.git;C\:\\workspace\\5_Server\\.git;
-GitRepositoriesView.GitDirectories.relative=C\:\\workspace\\.git;.git;
+GitRepositoriesView.GitDirectories=C\:\\workspace\\.git;C\:\\workspace\\semiPet\\.git;C\:\\workspace\\5_Server\\.git;
+GitRepositoriesView.GitDirectories.relative=C\:\\workspace\\.git;C\:\\workspace\\semiPet\\.git;.git;
+RepositorySearchDialogSearchPath=C\:\\workspace\\semiPet
 core_ssh_default_agent=\\\\.\\pageant
 eclipse.preferences.version=1

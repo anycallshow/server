@@ -13,4 +13,9 @@
 		AND MEMBER_PW = ?
 		AND SECESSION_FL = 'N'
 	</entry>
+	
+	<entry key="signUp">
+		INSERT INTO MEMBER 
+		VALUES(SEQ_MEMBER_NO.NEXTVAL,?, ?, ?, ?, ?, NULL, DEFAULT, DEFAULT)
+	</entry>
 </properties>

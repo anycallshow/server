@@ -11,11 +11,16 @@ public class MemberService {
 	
 	MemberDAO dao = new MemberDAO();
 
-	public Member find(Member mem) throws Exception{
+	/** 아이디 찾기 서비스
+	 * @param mem
+	 * @return findMember
+	 * @throws Exception
+	 */
+	public Member findId(Member mem) throws Exception{
 		
 		Connection conn = getConnection();
 		
-		Member findMember = dao.find(conn,mem);
+		Member findMember = dao.findId(conn,mem);
 		
 		close(conn);
 		

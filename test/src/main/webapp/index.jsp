@@ -64,9 +64,6 @@
                 <button>아이디 찾기</button>
             </form>
         </div>
-        <c:if test="${!empty findMember}">
-        	${findMember.memberId }
-        </c:if>
 
         <div class="pwForm">
             <h1>비밀번호 찾기</h1>
@@ -83,6 +80,13 @@
 	
     <footer></footer>
 
+    <c:if test="${!empty sessionScope.message}">
+        <script>
+            alert("${message}");
+        </script>
+
+        <c:remove var="message" scope="session"/>
+    </c:if>
     
 </body>
 </html>

@@ -26,25 +26,20 @@ public class FindServlet extends HttpServlet{
 		mem.setMemberNickname(inputName);
 		mem.setMemberEmail(inputEmail);
 		
-		System.out.println(mem.getMemberNickname());
-		System.out.println(mem.getMemberEmail());
-		
 		try {
 			MemberService service = new MemberService();
 			
-			Member findMember = service.find(mem);
+			Member findMember = service.findId(mem);
 			
 			
 			HttpSession session = req.getSession();
 			
 			if(findMember != null) {
-				System.out.println(findMember);
-				session.setAttribute("findMember", findMember);
 				
-				session.setMaxInactiveInterval(3600);
+				session.setAttribute("message", "회원님의 아이디는 " + findMember.getMemberId() + "입니다.");
 				
 			}else {
-				session.setAttribute("message", "회원 정보가 없당께");
+				session.setAttribute("message", "회원 정보가 없습니다.");
 			}
 			
 			resp.sendRedirect(req.getContextPath());

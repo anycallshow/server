@@ -30,7 +30,13 @@ public class MemberDAO {
 		}
 	}
 
-	public Member find(Connection conn, Member mem) throws Exception{
+	/** 아이디 찾기 DAO
+	 * @param conn
+	 * @param mem
+	 * @return findMember
+	 * @throws Exception
+	 */
+	public Member findId(Connection conn, Member mem) throws Exception{
 		
 		Member findMember = null; // 결과 저장
 		

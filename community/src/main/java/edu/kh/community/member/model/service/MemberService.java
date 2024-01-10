@@ -18,7 +18,6 @@ public class MemberService {
 	 */
 	public Member login(Member mem) throws Exception{
 		
-		System.out.println("test0");
 		
 		// Connection 얻어오기
 		Connection conn = getConnection();
@@ -31,6 +30,30 @@ public class MemberService {
 		
 		// 결과 반환
 		return loginMember;
+	}
+
+	/** 회원가입 서비스
+	 * @param mem
+	 * @return result
+	 * @throws Exception
+	 */
+	public int signUp(Member mem) throws Exception{
+		
+		// 1) 커넥션 얻어오기
+		Connection conn = getConnection();
+		
+		// 2) DAO 메소드 호출 후 결과 반환 받기
+		int result = dao.signUp(conn, mem);
+		
+		// 3) 트랜잭션 처리
+		if(result > 0 ) commit(conn);
+		else 			rollback(conn);
+		
+		// 4) conn 반환(DBCP로 돌려주기)
+		close(conn);
+		
+		// 5) 결과 반환
+		return result;
 	}
 
 }
