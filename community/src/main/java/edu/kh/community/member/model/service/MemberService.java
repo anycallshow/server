@@ -8,7 +8,7 @@ import edu.kh.community.member.model.dao.MemberDAO;
 import edu.kh.community.member.model.vo.Member;
 
 public class MemberService {
-	
+
 	private MemberDAO dao = new MemberDAO();
 
 	/** 로그인 서비스
@@ -17,17 +17,16 @@ public class MemberService {
 	 * @throws Exception
 	 */
 	public Member login(Member mem) throws Exception{
-		
-		
+
 		// Connection 얻어오기
 		Connection conn = getConnection();
-				
+
 		// DAO 수행
 		Member loginMember = dao.login(conn, mem);
-		
+
 		// Connection 반환
 		close(conn);
-		
+
 		// 결과 반환
 		return loginMember;
 	}
@@ -38,22 +37,75 @@ public class MemberService {
 	 * @throws Exception
 	 */
 	public int signUp(Member mem) throws Exception{
-		
-		// 1) 커넥션 얻어오기
+
 		Connection conn = getConnection();
-		
-		// 2) DAO 메소드 호출 후 결과 반환 받기
+
 		int result = dao.signUp(conn, mem);
-		
-		// 3) 트랜잭션 처리
+
 		if(result > 0 ) commit(conn);
-		else 			rollback(conn);
-		
-		// 4) conn 반환(DBCP로 돌려주기)
+		else          	rollback(conn);
+
 		close(conn);
-		
-		// 5) 결과 반환
+
 		return result;
 	}
 
+	/** 마이페이지(내정보 수정) 서비스
+	 * @param mem
+	 * @return result
+	 * @throws Exception
+	 */
+	public int myPage(Member mem) throws Exception {
+		Connection conn = getConnection();
+
+		int result = dao.myPage(conn, mem);
+
+		if(result > 0 ) commit(conn);
+		else          	rollback(conn);
+
+		close(conn);
+
+		return result;
+	}
+
+	/** 비밀번호 변경 서비스
+	 * @param currentPw
+	 * @param newPw
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int changePw(String currentPw, String newPw, int memberNo) throws Exception{
+
+		Connection conn =getConnection();
+
+		int result = dao.changePw(currentPw, newPw, memberNo, conn);
+
+		if(result > 0 ) commit(conn);
+		else         	rollback(conn);
+
+		close(conn);
+
+		return result;
+	}
+
+	/** 회원 탈퇴 서비스
+	 * @param memberPw
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int secession(String memberPw, int memberNo) throws Exception{
+
+		Connection conn =getConnection();
+
+		int result = dao.secession(memberPw, memberNo, conn);
+
+		if(result > 0 ) commit(conn);
+		else         	rollback(conn);
+
+		close(conn);
+
+		return result;
+	}
 }
