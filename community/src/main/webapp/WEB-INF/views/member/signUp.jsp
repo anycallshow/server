@@ -29,7 +29,7 @@
             현재 주소 : /community/member/signUp
             상대 경로 : signUp
          --%>
-            <form action="signUp" method="post" name="signUp-form">
+            <form action="signUp" method="post" name="signUp-form" onsubmit="return signUpValidate()">
 
                 <label for="memberEmail">
                     <span class="required">*</span> 아이디(이메일)
@@ -43,7 +43,7 @@
                     <button type="button">인증번호 받기</button>
                 </div>
 
-                <span class="signUp-message confirm">메일을 받을 수 있는 이메일을 입력해주세요.</span>
+                <span class="signUp-message" id="emailMessage">메일을 받을 수 있는 이메일을 입력해주세요.</span>
                 
                 <label for="emailCheck">
                     <span class="required">*</span> 인증번호 
@@ -77,7 +77,7 @@
                     <!-- required : 필수 작성 input 태그 -->
                 </div>
 
-                <span class="signUp-message error">비밀번호가 일치하지 않습니다.</span>
+                <span class="signUp-message error" id="pwMessage">영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.</span>
 
                 <label for="memberNickname">
                     <span class="required">*</span> 닉네임 
@@ -90,7 +90,7 @@
                     <!-- required : 필수 작성 input 태그 -->
                 </div>
 
-                <span class="signUp-message confirm">사용 가능한 닉네임 입니다.</span>
+                <span class="signUp-message" id="nicknameMessage">영어/숫자/한글 2~10글자 사이로 작성해주세요.</span>
 
                 <label for="memberTel">
                     <span class="required">*</span> 전화번호 
@@ -103,7 +103,7 @@
                     <!-- required : 필수 작성 input 태그 -->
                 </div>
 
-                <span class="signUp-message error">전화번호 형식이 올바르지 않습니다.</span>
+                <span class="signUp-message" id="telMessage">전화번호를 입력해주세요.(- 제외)</span>
 
                 <label for="memberAddress">
                      주소 
@@ -137,5 +137,8 @@
         
     </main>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+    <%-- signUp.js 연결 --%>
+    <script src="${contextPath}/resources/js/member/signUp.js"></script>
 </body>
 </html>
