@@ -198,4 +198,106 @@ public class MemberDAO {
 
 		return result;
 	}
+
+	/** 이메일 중복검사 DAO
+	 * @param memberEmail
+	 * @param conn
+	 * @return result
+	 * @throws Exception
+	 */
+	public int emailDupCheck(String memberEmail, Connection conn) throws Exception{
+		
+		int result = 0; // 결과 저장용 변수
+
+		try {
+			
+			// SQL 얻어오기
+			String sql = prop.getProperty("emailDupCheck");
+
+			// pstmt 생성
+			pstmt = conn.prepareStatement(sql);
+
+			// 위치홀더에 알맞은 값 세팅
+			pstmt.setString(1, memberEmail);
+			
+			// SQL(SELECT) 수행 후 결과 반환 받기
+			rs = pstmt.executeQuery();
+			
+			// rs.next()로 조회결과를 확인
+			if(rs.next()) result = rs.getInt(1); // 1번 컬럼 결과를 result에 대입
+
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/** 닉네임 중복검사 DAO
+	 * @param memberNickname
+	 * @param conn
+	 * @return result
+	 * @throws Exception
+	 */
+	public int nicknameDupCheck(String memberNickname, Connection conn) throws Exception{
+		int result = 0; // 결과 저장용 변수
+
+		try {
+			
+			String sql = prop.getProperty("nicknameDupCheck");
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, memberNickname);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) result = rs.getInt(1); 
+
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	/** 회원 정보 조회 DAO
+	 * @param memberEmail
+	 * @param conn
+	 * @return selectMember
+	 * @throws Exception
+	 */
+	public Member selectOne(String memberEmail, Connection conn) throws Exception{
+		
+		Member selectMember = null;
+		
+		try {
+			
+			String sql = prop.getProperty("selectOne");
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, memberEmail);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				selectMember = new Member();
+				
+				selectMember.setMemberEmail(		rs.getString(1));
+				selectMember.setMemberNickname(		rs.getString(2));
+				selectMember.setMemberTel(			rs.getString(3));
+				selectMember.setMemberAddress(		rs.getString(4));
+				selectMember.setEnrollDate(			rs.getString(5));
+				
+			}
+			
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return selectMember;
+	}
 }

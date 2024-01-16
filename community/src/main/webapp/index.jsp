@@ -27,12 +27,27 @@
 	
         <section class="content">
             <section class="content-1">
-            	loginMember : ${sessionScope.loginMember }
-            	
-            	<hr>
-            	
-            	message : ${sessionScope.message }
             
+            <h3>회원 정보 조회(AJAX)</h3>
+
+            <p>이메일을 입력 받아 일치하는 회원 정보를 출력</p>
+
+            이메일 : <input type="text" id="in1">
+            <button id="select1">조회</button>
+
+            <div id="result1" style="height: 150px;">
+                <!-- 이메일이 일치하는 회원이 있을 경우 -->
+                <ul>
+                    <li>이메일 : user01@kh.or.kr</li>
+                    <li>닉네임 : 유저일</li>
+                    <li>전화번호 : 01012341234</li>
+                    <li>주소 : 서울시 강남구 테헤란로</li>
+                    <li>가입일 : 2024년 01월 16일</li>
+                </ul>
+            </div>
+
+            <!-- 이메일이 일치하는 회원이 없을 경우 -->
+            <h4 style="color: red;">일치하는 회원이 없습니다.</h4>
             
             </section>
             <section class="content-2">
@@ -114,6 +129,7 @@
     <!-- footer include -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <%-- main.js 연결 --%>
     <script src="${contextPath}/resources/js/main.js"></script>
     

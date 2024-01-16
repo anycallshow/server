@@ -58,6 +58,34 @@ document.getElementsByName("saveId")[0].addEventListener("change", function(){
             this.checked = false; // 체크 해제
         }
     }
-    
+})
+
+// 회원 정보 조회 비동기 통신(AJAX)
+document.getElementById("select1").addEventListener("click", function(){
+    const input = document.getElementById("in1");
+    const div = document.getElementById("result1");
+
+    // AJAX 코드 작성(jQuery 방식) -> jQuery 라이브러리가 추가 되어 있는지 확인
+    $.ajax({
+        // /community/member/selectOne
+        url : "member/selectOne",
+        data : { "memberEmail" : input.value },
+        type : "POST",
+        success : function(mem){
+            console.log(mem);
+        },
+
+        error : function(request, status, error){
+            console.log("AJAX 에러 발생");
+
+            console.log("상태코드 : " + request.status); // 404, 500
+
+            console.log(request.responseText); // 에러 메세지
+
+            console.log(error); // 에러 객체 출력
+
+        }
+
+    });
 
 })

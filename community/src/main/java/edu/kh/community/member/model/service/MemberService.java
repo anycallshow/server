@@ -108,4 +108,53 @@ public class MemberService {
 
 		return result;
 	}
+
+	/** 이메일 중복검사 서비스
+	 * @param memberEmail
+	 * @return result
+	 * @throws Exception
+	 */
+	public int emailDupCheck(String memberEmail) throws Exception{
+		
+		Connection conn =getConnection(); // DBCP에서 만들어둔 커넥션 얻어오기
+
+		int result = dao.emailDupCheck(memberEmail, conn);
+
+		close(conn);
+
+		return result;
+		
+	}
+
+	/** 닉네임 중복검사 서비스
+	 * @param memberNickname
+	 * @return result
+	 * @throws Exception
+	 */
+	public int nicknameDupCheck(String memberNickname) throws Exception{
+		
+		Connection conn =getConnection(); 
+
+		int result = dao.nicknameDupCheck(memberNickname, conn);
+
+		close(conn);
+
+		return result;
+	}
+
+	/** 회원 정보 조회 서비스
+	 * @param memberEmail
+	 * @return selectMember
+	 * @throws Exception
+	 */
+	public Member selectOne(String memberEmail) throws Exception{
+		
+		Connection conn =getConnection(); 
+
+		Member selectMember = dao.selectOne(memberEmail, conn);
+
+		close(conn);
+
+		return selectMember;
+	}
 }

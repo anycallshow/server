@@ -77,7 +77,7 @@
                     <!-- required : 필수 작성 input 태그 -->
                 </div>
 
-                <span class="signUp-message error" id="pwMessage">영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.</span>
+                <span class="signUp-message" id="pwMessage">영어, 숫자, 특수문자(!,@,#,-,_) 6~30글자 사이로 작성해주세요.</span>
 
                 <label for="memberNickname">
                     <span class="required">*</span> 닉네임 
@@ -138,6 +138,9 @@
     </main>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+    <%-- jQuery 라이브러리 추가 (CDN방식) --%>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
     <%-- signUp.js 연결 --%>
     <script src="${contextPath}/resources/js/member/signUp.js"></script>
 </body>
