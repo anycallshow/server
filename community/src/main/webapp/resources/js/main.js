@@ -1,65 +1,5 @@
 console.log("main.js loaded.");
 
-// 로그인 시 이메일(아이디) / 비밀번호 입력 확인
-
-// -> 미작성 시 alert() 이용해서 메세지를 출력하고
-//    로그인 form 태그의 제출을 막는 기본 이벤트 제거 진행
-
-function loginValidate(){
-    // validate : 유효하다
-    // invalidate : 무효하다
-
-    // 이메일 입력 input 요소
-    const inputEmail = document.getElementsByName("inputEmail")[0];
-
-    // 비밀번호 입력 input 요소
-    const inputPw = document.getElementsByName("inputPw")[0];
-
-    // 이메일이 입력되지 않은 경우 false 반환
-    if(inputEmail.value.trim().length == 0){
-        // 문자열.trim() : 문자열 양쪽 공백을 제거
-        // 문자열.length : 문자열 길이(몇 글자?)
-
-        alert("이메일을 입력주세요.");
-        inputEmail.value = ""; // 이메일 input 입력된 내용을 모두 삭제
-        inputEmail.focus(); // 이메일 input에 포커스를 맞춰줌
-
-        return false; // 기본 이벤트 제거를 위해 false 반환
-    }
-
-    // 비밀번호를 입력하지 않은 경우 false 반환
-    if(inputPw.value.trim() == ""){
-        alert("비밀번호를 입력해주세요.");
-        inputPw.value = ""; 
-        inputPw.focus(); 
-        return false;
-    }
-
-    return true;
-}
-
-// 아이디 저장 체크박스가 체크되어을 때 이벤트 처리
-
-// radio, check 체크시 change 이벤트 발생
-document.getElementsByName("saveId")[0].addEventListener("change", function(){
-
-    // 체크 여부 확인
-    console.log(this.checked);
-    // this : change 이벤트가 발생한 요소(체크박스)
-    // 체크박스요소.checked : 체크 여부 반환(true/false)
-
-    if(this.checked){ // 체크박스가 체크된 경우
-
-        const str = "개인 정보 보호를 위해 개인 PC에서의 사용을 권장합니다. 개인 PC가 아닌 경우 취소를 눌러주세요.";
-
-        // confirm(str); // 확인(true) / 취소(false) 대화상자
-
-        if(!confirm(str)){ // 취소를 눌렀을 때
-            this.checked = false; // 체크 해제
-        }
-    }
-})
-
 // 회원 정보 조회 비동기 통신(AJAX)
 document.getElementById("select1").addEventListener("click", function(){
     const input = document.getElementById("in1");
@@ -202,3 +142,65 @@ function selectAll(){ // 회원 전체 조회 함수
     // --> 처음에 함수가 수행되지 않아서 공백인 상태가 있음
 
 })();
+
+// 로그인 시 이메일(아이디) / 비밀번호 입력 확인
+
+// -> 미작성 시 alert() 이용해서 메세지를 출력하고
+//    로그인 form 태그의 제출을 막는 기본 이벤트 제거 진행
+
+function loginValidate(){
+    // validate : 유효하다
+    // invalidate : 무효하다
+
+    // 이메일 입력 input 요소
+    const inputEmail = document.getElementsByName("inputEmail")[0];
+
+    // 비밀번호 입력 input 요소
+    const inputPw = document.getElementsByName("inputPw")[0];
+
+    // 이메일이 입력되지 않은 경우 false 반환
+    if(inputEmail.value.trim().length == 0){
+        // 문자열.trim() : 문자열 양쪽 공백을 제거
+        // 문자열.length : 문자열 길이(몇 글자?)
+
+        alert("이메일을 입력주세요.");
+        inputEmail.value = ""; // 이메일 input 입력된 내용을 모두 삭제
+        inputEmail.focus(); // 이메일 input에 포커스를 맞춰줌
+
+        return false; // 기본 이벤트 제거를 위해 false 반환
+    }
+
+    // 비밀번호를 입력하지 않은 경우 false 반환
+    if(inputPw.value.trim() == ""){
+        alert("비밀번호를 입력해주세요.");
+        inputPw.value = ""; 
+        inputPw.focus(); 
+        return false;
+    }
+
+    return true;
+}
+
+// 아이디 저장 체크박스가 체크되어을 때 이벤트 처리
+
+// radio, check 체크시 change 이벤트 발생
+document.getElementsByName("saveId")[0].addEventListener("change", function(){
+
+    // 체크 여부 확인
+    console.log(this.checked);
+    // this : change 이벤트가 발생한 요소(체크박스)
+    // 체크박스요소.checked : 체크 여부 반환(true/false)
+
+    if(this.checked){ // 체크박스가 체크된 경우
+
+        const str = "개인 정보 보호를 위해 개인 PC에서의 사용을 권장합니다. 개인 PC가 아닌 경우 취소를 눌러주세요.";
+
+        // confirm(str); // 확인(true) / 취소(false) 대화상자
+
+        if(!confirm(str)){ // 취소를 눌렀을 때
+            this.checked = false; // 체크 해제
+        }
+    }
+})
+
+

@@ -6,7 +6,7 @@
 	<section>
 	
 	<!-- header를 별도의 jsp로 분리한 경우
-		상대경로로 작서오딘 이미지의 경로가 일치하지 않게됨
+		상대경로로 작성된 이미지의 경로가 일치하지 않게됨
 		
 		* 지금처럼 분리시켜둔 jsp에서 경로를 지정하는 경우
 		상대경로로 작성 시 문제가 발생할 가능성이 높음!!
@@ -15,7 +15,7 @@
 	 
 	
 	  <!--
-	  	 /community 
+	 	 /community 
 	  
 	  	 <= request.getContextpath() %>
 	     ${ pageContext.servletContext.contextPath }
@@ -53,11 +53,17 @@
 	<section></section>
 </header>
 
+<%-- 
+	쿼리스트링 : 주소에 담겨져서 전달되는 파라미터를 나타내는 문자열
+	주소?name속성=값&name속성=값
+	/member/login?memberEmail=user01&memberPw=1234
+--%>
+
 <nav>
 	<ul>
-		<li><a href="#">공지사항</a></li>
-		<li><a href="#">자유 게시판</a></li>
-		<li><a href="#">질문 게시판</a></li>
+		<li><a href="${contextPath}/board/list?type=1">공지사항</a></li>
+		<li><a href="${contextPath}/board/list?type=2">자유 게시판</a></li>
+		<li><a href="${contextPath}/board/list?type=3">질문 게시판</a></li>
 		<li><a href="#">FAQ</a></li>
 		<li><a href="#">1:1문의</a></li>
 	</ul>

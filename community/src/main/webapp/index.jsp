@@ -80,7 +80,7 @@
             		<%-- 로그인이 되어있지 않은 경우 --%>
             		<c:when test="${ empty sessionScope.loginMember }"> 
             		<!-- 절대 경로 : /community/member/login -->
-            	<!-- 상대 경로 : (index.jsp) 기준 -->
+            	    <!-- 상대 경로 : (index.jsp) 기준 -->
                 <form action="member/login" method="post" name="login-form" onsubmit="return loginValidate()">
 
                     <!-- 아이디/비밀번호/로그인버튼 영역 -->

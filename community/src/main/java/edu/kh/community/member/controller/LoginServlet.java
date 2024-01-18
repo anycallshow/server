@@ -57,6 +57,7 @@ public class LoginServlet extends HttpServlet{
 			// Session 객체 얻어오기
 			HttpSession session = req.getSession();
 			
+			
 			if(loginMember != null) { // 성공
 				
 				// 회원 정보 Session 세팅
