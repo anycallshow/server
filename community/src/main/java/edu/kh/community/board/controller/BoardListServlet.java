@@ -46,6 +46,9 @@ public class BoardListServlet extends HttpServlet{
 			String path = "/WEB-INF/views/board/boardList.jsp";
 			
 			RequestDispatcher dispatcher = req.getRequestDispatcher(path);
+			
+			// request 범위로 map 세팅
+			req.setAttribute("map", map);
 			dispatcher.forward(req, resp);
 			
 			

@@ -1,187 +1,131 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!-- 문자열 관련 함수(메소드) 제공 JSTL (EL형식으로 작성) -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%-- map에 저장된 값을 각각 변수에 저장 --%>
 <!DOCTYPE html>
-<html lang="ko">
+<c:set var="boardName" value="${map.boardName}" />
+<c:set var="pagination" value="${map.pagination}" />
+<c:set var="boardList" value="${map.boardList}" />
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시판</title>
-
-    <link rel="stylesheet" href="${contextPath}/resources/css/boardList-style.css">
+    <title> ${boardName} </title>
+     <link rel="stylesheet" href="${contextPath}/resources/css/boardList-style.css">
     <link rel="stylesheet" href="${contextPath}/resources/css/main-style.css">
-
     <script src="https://kit.fontawesome.com/0537c4177e.js" crossorigin="anonymous"></script>
+
+    <script></script>
 </head>
 <body>
-    <main>
+   <main>
+     <jsp:include page="/WEB-INF/views/common/header.jsp" />
+ 
+    <section class="board-list">
 
-        <jsp:include page="/WEB-INF/views/common/header.jsp" />
+        <h1 class="board-name">${boardName}</h1>
 
-        <section class="board-list">
+        <div class="list-wrapper">
+            <table class="list-table">
+                <thead>
+                    <tr>
+                        <th>글번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                    </tr>
+                </thead>
 
-            <h1 class="board-name">게시판 이름</h1>
+                <tbody>
+                    <c:choose>
+                        <c:when  test="${empty boardList}">
+                            <tr>
+                                <th colspan="5">게시글이 존재 하지 않습니다.</th>
+                            </tr>
+                        </c:when>
+                    <c:otherwise>
+                        <c:forEach var="boardList" items="${boardList}">
+                            <tr>
+                                <td>${ boardList.boardNo}</td>
+                                <td>${ boardList.boardTitle}</td>
+                                <td>${ boardList.memberNickname}</td>
+                                <td>${ boardList.createDate}</td>
+                                <td>${ boardList.readCount}</td>
+                            </tr>
+                    
+                        </c:forEach>
+                    </c:otherwise> 
 
-            <div class="list-wrapper">
-                <table class="list-table">
-                    <thead>
-                        <tr>
-                            <th>글번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>작성일</th>
-                            <th>조회수</th>
-                        </tr>
-                    </thead>
+                    </c:choose>                  
+                    <%-- 향상된 for문 처럼 사용 --%>
+                   
+            
 
-                    <tbody>
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
+                    
+                    
+                </tbody>
+            </table>
+        </div>
 
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
+        <div class="btn-area">
+            <button id="insertBtn">글쓰기</button>
+        </div>
 
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
+        <div class="pagination-area">
 
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
-
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
-
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
-
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
-
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
-
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
-
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <a href="#">10번째 게시글</a>
-                            </td>
-                            <td>유저일</td>
-                            <td>2024-01-18</td>
-                            <td>50</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="btn-area">
-                <button id="insertBtn">글쓰기</button>
-            </div>
-
-            <div class="pagination-area">
-                <ul class="pagination">
-                    <li><a href="#">&lt;&lt;</a></li>
-                    <li><a href="#">&lt;</a></li>
-
-                    <li><a class="current">1</a></li>
-                    <li><a href="${contextPath}/board/list?type=1&cp=2">2</a></li>
-                    <li><a href="${contextPath}/board/list?type=1&cp=3">3</a></li>
-                    <li><a href="${contextPath}/board/list?type=1&cp=4">4</a></li>
-                    <li><a href="${contextPath}/board/list?type=1&cp=5">5</a></li>
-                    <li><a href="${contextPath}/board/list?type=1&cp=6">6</a></li>
-                    <li><a href="${contextPath}/board/list?type=1&cp=7">7</a></li>
-                    <li><a href="${contextPath}/board/list?type=1&cp=8">8</a></li>
-                    <li><a href="${contextPath}/board/list?type=1&cp=9">9</a></li>
-                    <li><a href="${contextPath}/board/list?type=1&cp=10">10</a></li>
-
-                    <li><a href="#">&gt;</a></li>
-                    <li><a href="#">&gt;&gt;</a></li>
-                </ul>
-            </div>
-
-            <form action="#" method="get" id="boardSearch">
+            <%-- 페이지네이션 a태그에 사용될 공통 주소를 저장할 변수 선언 --%>
+            <c:set var="url" value="list?type=${ param.type }&cp="/>
+            <ul class="pagination">
+                <%-- 첫 페이지로 이동 --%>
+                <li><a href="${url}1" >&lt;&lt;</a></li>
                 
-                <select name="key">
-                    <option value="t">제목</option>
-                    <option value="c">내용</option>
-                    <option value="tc">제목+내용</option>
-                    <option value="w">작성자</option>
-                </select>
+                <li><a href="${url}${pagination.prevPage}">&lt;</a></li>
 
-                <input type="text" name="query" placeholder="검색어를 입력해주세요.">
+                <%-- 범위가 정해진 일반 for문 사용 --%>
+                <c:forEach var="i"  begin="${pagination.startPage}"  end="${pagination.endPage}" step="1">
+                    <c:choose>
+                        <c:when test="${i == pagination.currentPage}">
+                            <li><a  class="current">${i}</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li> <a href="${url}${i}">${i}</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <li><a href="${url}${pagination.nextPage}">&gt;</a></li>
+                <li><a href="${url}${pagination.maxPage}">&gt;&gt;</a></li>
+                
+            </ul>
+        </div>
 
-                <button>검색</button>
-            </form>
+        <form action="#" method="get" id="boardSearch">
+            <select name="key">
+                <option value="t">제목</option>
+                <option value="c">내용</option>
+                <option value="tc">제목+내용</option>
+                <option value="w">작성자</option>
+            </select>
 
-        </section>
+            <input type="text" name="query" placeholder="검색어를 입력해주세요.">
 
-    </main>
+            <button>검색</button>
+        </form>
 
+    </section>
+
+
+
+
+
+
+   </main>
      <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
+   
+  
+
+    
 </body>
 </html>
