@@ -67,7 +67,7 @@
 
         <div class="pwForm">
             <h1>비밀번호 찾기</h1>
-            <form action="#">
+            <form action="test/find" method="post">
                 <input type="text" name="userId" id="pwId" placeholder=" 아이디"> <br>
                 <input type="text" name="userName" id="pwName" placeholder=" 이름"> <br>
                 <input type="email" name="userEmail" id="pwEmail" placeholder=" 이메일"><br><br>

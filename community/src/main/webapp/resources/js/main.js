@@ -1,5 +1,3 @@
-console.log("main.js loaded.");
-
 // 회원 정보 조회 비동기 통신(AJAX)
 document.getElementById("select1").addEventListener("click", function(){
     const input = document.getElementById("in1");
@@ -182,25 +180,28 @@ function loginValidate(){
 }
 
 // 아이디 저장 체크박스가 체크되어을 때 이벤트 처리
+const saveId = document.getElementsByName("saveId")[0]
 
-// radio, check 체크시 change 이벤트 발생
-document.getElementsByName("saveId")[0].addEventListener("change", function(){
-
-    // 체크 여부 확인
-    console.log(this.checked);
-    // this : change 이벤트가 발생한 요소(체크박스)
-    // 체크박스요소.checked : 체크 여부 반환(true/false)
-
-    if(this.checked){ // 체크박스가 체크된 경우
-
-        const str = "개인 정보 보호를 위해 개인 PC에서의 사용을 권장합니다. 개인 PC가 아닌 경우 취소를 눌러주세요.";
-
-        // confirm(str); // 확인(true) / 취소(false) 대화상자
-
-        if(!confirm(str)){ // 취소를 눌렀을 때
-            this.checked = false; // 체크 해제
+if(saveId != null){
+    // radio, check 체크시 change 이벤트 발생
+    saveId.addEventListener("change", function(){
+    
+        // 체크 여부 확인
+        console.log(this.checked);
+        // this : change 이벤트가 발생한 요소(체크박스)
+        // 체크박스요소.checked : 체크 여부 반환(true/false)
+    
+        if(this.checked){ // 체크박스가 체크된 경우
+    
+            const str = "개인 정보 보호를 위해 개인 PC에서의 사용을 권장합니다. 개인 PC가 아닌 경우 취소를 눌러주세요.";
+    
+            // confirm(str); // 확인(true) / 취소(false) 대화상자
+    
+            if(!confirm(str)){ // 취소를 눌렀을 때
+                this.checked = false; // 체크 해제
+            }
         }
-    }
-})
+    })
+}
 
 

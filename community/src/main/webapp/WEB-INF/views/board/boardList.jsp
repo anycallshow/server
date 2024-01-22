@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 문자열 관련 함수(메소드) 제공 JSTL (EL형식으로 작성) -->
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+
 <%-- map에 저장된 값을 각각 변수에 저장 --%>
 <!DOCTYPE html>
 <c:set var="boardName" value="${map.boardName}" />
@@ -40,30 +41,31 @@
 
                 <tbody>
                     <c:choose>
+                    <%-- 글 목록 조회 결과가 비어있다면 --%>
                         <c:when  test="${empty boardList}">
                             <tr>
                                 <th colspan="5">게시글이 존재 하지 않습니다.</th>
                             </tr>
                         </c:when>
+
+                    <%-- 글 목록 조회 결과가 비어있지 않다면 --%>
                     <c:otherwise>
-                        <c:forEach var="boardList" items="${boardList}">
+                        <%-- 향상된 for문 처럼 사용 --%>
+                        <c:forEach var="board" items="${boardList}">
                             <tr>
-                                <td>${ boardList.boardNo}</td>
-                                <td>${ boardList.boardTitle}</td>
-                                <td>${ boardList.memberNickname}</td>
-                                <td>${ boardList.createDate}</td>
-                                <td>${ boardList.readCount}</td>
+                                <td>${ board.boardNo}</td>
+                                <td>
+                                    <a href="detail?no=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}">${ board.boardTitle}</a>
+                                </td>
+                                <td>${ board.memberNickname}</td>
+                                <td>${ board.createDate}</td>
+                                <td>${ board.readCount}</td>
                             </tr>
                     
                         </c:forEach>
                     </c:otherwise> 
 
                     </c:choose>                  
-                    <%-- 향상된 for문 처럼 사용 --%>
-                   
-            
-
-                    
                     
                 </tbody>
             </table>
@@ -115,17 +117,8 @@
 
     </section>
 
-
-
-
-
-
    </main>
      <jsp:include page="/WEB-INF/views/common/footer.jsp" />
-
-   
-  
-
     
 </body>
 </html>

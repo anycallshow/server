@@ -126,7 +126,7 @@
 
                              <!-- 회원 프로필 이미지 -->
                              <a href="#">
-                                <img src="resources/images/KakaoTalk_20240109_101944889.png" id="member-profile">
+                                <img src="resources/images/go.jpg" id="member-profile">
                              </a>
 
                              <!-- 회원 정보 + 로그아웃 버튼 -->
