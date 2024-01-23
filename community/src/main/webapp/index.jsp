@@ -123,11 +123,19 @@
                     <%-- 로그인이 되었을 경우 --%>
             		<c:otherwise>
                         <article class="login-area">
+                            <c:if test="${!empty loginMember.profileImage}">
+                                <!-- 회원 프로필 이미지 -->
+                                <a href="#">
+                                   <img src="${contextPath}${loginMember.profileImage}" id="member-profile">
+                                </a>
+                            </c:if>
 
-                             <!-- 회원 프로필 이미지 -->
-                             <a href="#">
-                                <img src="resources/images/go.jpg" id="member-profile">
-                             </a>
+                            <c:if test="${empty loginMember.profileImage}">
+                                <!-- 회원 프로필 이미지 -->
+                                <a href="#">
+                                   <img src="${contextPath}/resources/images/user.png" id="member-profile">
+                                </a>
+                            </c:if>
 
                              <!-- 회원 정보 + 로그아웃 버튼 -->
                              <div class=my-info>
