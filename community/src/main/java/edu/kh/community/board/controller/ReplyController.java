@@ -31,6 +31,7 @@ public class ReplyController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// GET 방식 요청 처리
+		
 		String uri = req.getRequestURI(); // /community/reply/selecReplyList
 
 		String contextPath = req.getContextPath(); // /community
@@ -40,6 +41,7 @@ public class ReplyController extends HttpServlet{
 		ReplyService service = new ReplyService();
 
 		try {
+			
 			// 댓글 목록 조회 요청인 경우(select)
 			if(command.equals("selectReplyList")) {
 
@@ -51,6 +53,49 @@ public class ReplyController extends HttpServlet{
 				
 				// JSON 변환 + 응답
 				new Gson().toJson(rList, resp.getWriter());
+			}
+			
+			// 댓글 등록
+			if(command.equals("insert")) {
+				
+				// 파라미터 얻어오기
+				String replyContent = req.getParameter("replyContent");
+				int memberNo = Integer.parseInt( req.getParameter("memberNo") );
+				int boardNo = Integer.parseInt( req.getParameter("boardNo") );
+				
+				// Reply 객체를 생성해서 파라미터 담기
+				Reply r = new Reply();
+				r.setReplyContent(replyContent);
+				r.setMemberNo(memberNo);
+				r.setBoardNo(boardNo);
+						
+				// 댓글 등록(INSERT) 서비스 호출 후 결과 반환 받기
+				int result = service.insertReply(r);
+				
+				// 서비스 호출 결과를 그대로 응답 데이터로 내보냄
+				resp.getWriter().print(result);
+				
+			}
+			
+			// 댓글 삭제
+			if(command.equals("delete")) {
+				int replyNo = Integer.parseInt( req.getParameter("replyNo") );
+				
+				int result = service.deleteReply(replyNo);
+				
+				resp.getWriter().print(result);
+				
+			}
+			
+			// 댓글 수정
+			if(command.equals("update")) {
+				int replyNo = Integer.parseInt( req.getParameter("replyNo") );
+				String replyContent = req.getParameter("replyContent");
+				
+				int result = service.updateReply(replyNo, replyContent);
+				
+				resp.getWriter().print(result);
+				
 			}
 
 

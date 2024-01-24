@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="reply-area">
-
     <!-- 댓글 목록 -->
     <div class="reply-list-area">
 
@@ -27,38 +26,18 @@
                         <span class="reply-date"> (${reply.createDate}) </span>
                     </p>
     
-                    <p class="reply-content">
-                        ${reply.replyContent}
-                    </p>
+                    <p class="reply-content">${reply.replyContent}</p>
                     
                     <c:if test="${loginMember.memberNo == reply.memberNo}">
                         <div class="reply-btn-area">
-                            <button>수정</button>
-                            <button>삭제</button>
+                            <button onclick="showUpdateReply(${reply.replyNo}, this )">수정</button>
+                            <button onclick="deleteReply(${reply.replyNo})">삭제</button>
                         </div>
                     </c:if>
                 </li>
 
             </c:forEach>
 
-
-            <li class="reply-row">
-                <p class="reply-writer">
-                    <img src="${contextPath}/resources/images/user.png">
-                    <span>댓글 작성자 닉네임</span>
-                    <span class="reply-date"> (2024.01.23 09:38:45) </span>
-                </p>
-
-                <p class="reply-content">
-                    댓글 내용입니다. <br>
-                    이런식으로 출력 예정!
-                </p>
-
-                <div class="reply-btn-area">
-                    <button>수정</button>
-                    <button>삭제</button>
-                </div>
-            </li>
         </ul>
 
     </div>
