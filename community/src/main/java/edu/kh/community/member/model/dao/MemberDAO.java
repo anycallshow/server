@@ -338,4 +338,30 @@ public class MemberDAO {
 		
 		return memberList;
 	}
+
+	/** 프로필 변경 DAO
+	 * @param conn
+	 * @param profileImage
+	 * @param memberNo
+	 * @return result
+	 * @throws Exception
+	 */
+	public int updateProfileImage(Connection conn, String profileImage, int memberNo) throws Exception{
+		int result =0;
+		try {
+			
+			String sql = prop.getProperty("updateProfileImage");
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, profileImage);
+			pstmt.setInt(2, memberNo);
+
+			result = pstmt.executeUpdate();
+			
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

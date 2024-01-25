@@ -125,14 +125,14 @@
                         <article class="login-area">
                             <c:if test="${!empty loginMember.profileImage}">
                                 <!-- 회원 프로필 이미지 -->
-                                <a href="#">
+                                <a href="/community/member/myPage/profile">
                                    <img src="${contextPath}${loginMember.profileImage}" id="member-profile">
                                 </a>
                             </c:if>
 
                             <c:if test="${empty loginMember.profileImage}">
                                 <!-- 회원 프로필 이미지 -->
-                                <a href="#">
+                                <a href="/community/member/myPage/profile">
                                    <img src="${contextPath}/resources/images/user.png" id="member-profile">
                                 </a>
                             </c:if>

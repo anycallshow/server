@@ -172,4 +172,24 @@ public class MemberService {
 
 		return memberList;
 	}
+
+	/** 프로필 변경 service
+	 * @param memberNo
+	 * @param profileImage
+	 * @return
+	 * @throws Exception
+	 */
+	public int updateProfileImage(int memberNo, String profileImage) throws Exception{
+		
+		Connection conn =getConnection();
+		
+		int result = dao.updateProfileImage(conn, profileImage, memberNo);
+		
+		if(result > 0 ) commit(conn);
+		else         	rollback(conn);
+
+		close(conn);
+		
+		return result;
+	}
 }
