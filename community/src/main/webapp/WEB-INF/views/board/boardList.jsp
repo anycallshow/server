@@ -72,7 +72,20 @@
         </div>
 
         <div class="btn-area">
-            <button id="insertBtn">글쓰기</button>
+            <c:if test="${!empty loginMember}">
+                <!-- /community/board/write -->
+                <!-- cp가 없을 경우에 대한 처리 -->
+                <c:if test="${empty param.cp}">
+                    <!-- 파라미터에 cp가 없을 경우 -->
+                    <c:set var="cp" value="1" />
+                </c:if>
+
+                <c:if test="${!empty param.cp}">
+                    <!-- 파라미터에 cp가 있을 경우 -->
+                    <c:set var="cp" value="${param.cp}" />
+                </c:if>
+                <button id="insertBtn" onclick="location.href='write?mode=insert&type=${param.type}&cp=${cp}'">글쓰기</button>
+            </c:if>
         </div>
 
         <div class="pagination-area">

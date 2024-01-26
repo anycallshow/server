@@ -43,7 +43,7 @@ public class MyPageProfileServlet extends HttpServlet {
 				
 				// 1. 업로드 되는 파일 크기의 전체 합을 지정 (byte지정)
 				int maxSize = 1024 * 1024 * 20; 
-							// 1KB    1MB
+							// 1KB    1MB * 20MB
 				// 2. 업로드 되는 파일이 어디에 저장될지 경로 지정
 				//    -> 서버 컴퓨터 내부 폴더(절대 경로)
 				
@@ -118,6 +118,7 @@ public class MyPageProfileServlet extends HttpServlet {
 				 MemberService service = new MemberService();
 				 
 				 int result = service.updateProfileImage(memberNo,profileImage);
+				 
 				 if(result>0) { // 성공
 					 session.setAttribute("message", "프로필 이미지가 변경되었습니다.");
 					 // DB의 프로필 이미지 정보는 변경 되었으나 
@@ -126,8 +127,10 @@ public class MyPageProfileServlet extends HttpServlet {
 					 loginMember.setProfileImage(profileImage);
 				 }else { // 실패
 					 session.setAttribute("message", "프로필 이미지 변경 실패");
+					 
 				 } // 성공 / 실패 관계 없이 프로필 화면 재요청(redirect)
 				 resp.sendRedirect("profile"); // 상대경로 (GET)
+				 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

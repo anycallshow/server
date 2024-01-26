@@ -117,6 +117,7 @@ if(inputImage != null){ // inputImage 요소가 화면에 존재 할 때
         //          선택된 파일 목록(배열) 반환
 
         //console.log(this.file[0]); // 파일목록에서 첫 번째 파일 객체를 선택
+        
         if(this.files[0] != undefined){ // 파일 선택되었을 때
 
             const reader = new FileReader();
