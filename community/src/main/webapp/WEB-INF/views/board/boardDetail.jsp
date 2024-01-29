@@ -110,7 +110,16 @@
             <div class="board-btn-area">
 
                 <c:if test="${loginMember.memberNo == detail.memberNo}">
-                    <button id="updateBtn">수정</button>
+
+                    <!-- cp가 없을 경우에 대한 처리 -->
+                    <c:if test="${empty param.cp}">
+                        <c:set var="cp" value="1" />
+                    </c:if>   
+
+                    <c:if test="${!empty param.cp}">
+                        <c:set var="cp" value="${param.cp}" />
+                    </c:if>   
+                    <button id="updateBtn" onclick="location.href='write?mode=update&type=${param.type}&cp=${cp}&no=${param.no}'">수정</button>
                     <button id="deleteBtn">삭제</button>
                 </c:if>
 
