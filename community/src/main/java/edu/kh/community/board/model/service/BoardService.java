@@ -194,4 +194,25 @@ public class BoardService {
 		return result;
 	}
 
+	/** 게시글 삭제 Service
+	 * @param boardNo
+	 * @param boardCode
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteBoard(int boardNo) throws Exception{
+		
+		Connection conn = getConnection();
+		
+		int result = dao.deleteBoard(conn, boardNo);
+		
+		if(result > 0)	commit(conn);
+		else 			rollback(conn);
+		
+		close(conn);
+		
+		return result;
+		
+	}
+
 }

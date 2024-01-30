@@ -51,24 +51,24 @@
                             </c:when>
 
                         <%-- 글 목록 조회 결과가 비어있지 않다면 --%>
-                        <c:otherwise>
+                            <c:otherwise>
                             <%-- 향상된 for문 처럼 사용 --%>
-                            <c:forEach var="board" items="${boardList}">
-                                <tr>
-                                    <td>${ board.boardNo}</td>
-                                    <td>
-                                        <c:if test="${!empty board.thumbnail}">
-                                            <img class="list-thumbnail" src="${contextPath}${board.thumbnail}">
-                                        </c:if>
+                                <c:forEach var="board" items="${boardList}">
+                                    <tr>
+                                        <td>${ board.boardNo}</td>
+                                        <td>
+                                            <c:if test="${!empty board.thumbnail}">
+                                                <img class="list-thumbnail" src="${contextPath}${board.thumbnail}">
+                                            </c:if>
 
-                                        <a href="detail?no=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}">${ board.boardTitle}</a>
-                                    </td>
-                                    <td>${ board.memberNickname}</td>
-                                    <td>${ board.createDate}</td>
-                                    <td>${ board.readCount}</td>
-                                </tr>
-                        
-                            </c:forEach>
+                                            <a href="detail?no=${board.boardNo}&cp=${pagination.currentPage}&type=${param.type}">${ board.boardTitle}</a>
+                                        </td>
+                                        <td>${ board.memberNickname}</td>
+                                        <td>${ board.createDate}</td>
+                                        <td>${ board.readCount}</td>
+                                    </tr>
+                            
+                                </c:forEach>
                         </c:otherwise> 
 
                         </c:choose>                  

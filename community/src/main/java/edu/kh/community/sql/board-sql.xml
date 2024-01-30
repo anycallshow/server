@@ -97,5 +97,12 @@
 		WHERE BOARD_NO = ?
 		AND IMG_LEVEL IN (
 	</entry>
+	
+	<!-- 게시글 삭제 -->
+	<entry key="deleteBoard">
+		UPDATE BOARD
+		SET BOARD_ST = 'Y'
+		WHERE BOARD_NO = ?
+	</entry>
 
 </properties>

@@ -53,10 +53,8 @@ for(let i=0; i<inputImage.length; i++){
         
             // deleteSet에 삭제된 이미지 레벨(i) 추가
             deleteSet.add(i);
-
+            
         }
-
-
 
     })
 

@@ -365,11 +365,37 @@ public class BoardDAO {
 		int result = 0;
 
 		try {
-							// 완성되지 않은 SQL
+			// 완성되지 않은 SQL
 			String sql = prop.getProperty("deleteBoardImage") + deleteList + ")";
 
 			pstmt = conn.prepareStatement(sql);
-			
+
+			pstmt.setInt(1, boardNo);
+
+			result = pstmt.executeUpdate();
+
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	/** 게시글 삭제 DAO
+	 * @param conn
+	 * @param boardNo
+	 * @param boardCode
+	 * @return result
+	 * @throws Exception
+	 */
+	public int deleteBoard(Connection conn, int boardNo) throws Exception{
+		int result = 0;
+
+		try {
+			String sql = prop.getProperty("deleteBoard");
+
+			pstmt = conn.prepareStatement(sql);
+
 			pstmt.setInt(1, boardNo);
 
 			result = pstmt.executeUpdate();

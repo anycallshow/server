@@ -88,6 +88,43 @@
 
             }, 450)
         })
+    }
+
+})();
+
+(function(){
+    const deleteBtn = document.getElementById("deleteBtn"); // 존재하지 않으면 null
+
+    if(deleteBtn != null){ // 삭제 버튼이 화면에 존재할 때
+        deleteBtn.addEventListener("click", function(){
+            // 현재 : detail?no=1582&cp=1&type=1
+
+            // 목표 : delete?no=1582&type=1
+
+            let url = "delete"; // 상대경로 형식으로 작성
+
+            // 주소에 작성된 쿼리스트링에서 필요한 파라미터만 얻어와서 사용
+
+            // 1) 쿼리스트링에 존재하는 파라미터 모두 얻어오기
+            const params = new URL(location.href).searchParams;
+            
+            // 2) 원하는 파라미터만 얻어와 변수에 저장
+            const no = "?no=" + params.get("no"); // ?no=1582
+
+            const type = "&type=" + params.get("type"); // &type=1
+
+            // url에 쿼리스트링 추가
+            url += no + type; // delete?no=1582&type=1
+
+            if(confirm("정말로 삭제하시겠습니까?")){
+                location.href = url; // get방식으로 url에 요청
+            }
+        })
 
     }
+
+
+
+
+
 })();
